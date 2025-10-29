@@ -41,7 +41,9 @@
 
 ### 🎙️ Voice Translation
 - **Real-time Recording** - Record and translate voice input
-- **Audio Playback** - Listen to original recordings
+- **Speech-to-Text** - Google Cloud Speech API for accurate transcription
+- **Audio File Support** - MP3, WAV, FLAC, OGG, WEBM formats
+- **Auto Translation** - Automatically translates transcribed text
 - **Multiple Languages** - Support for 8+ languages
 
 ### 📁 Document Translation
@@ -162,11 +164,13 @@ npm start
 npm run tunnel
 ```
 
-### 4️⃣ Google Cloud Vision Setup
+### 4️⃣ Google Cloud APIs Setup
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select existing one
-3. Enable **Cloud Vision API**
+3. Enable the following APIs:
+   - **Cloud Vision API** (for image OCR)
+   - **Cloud Speech-to-Text API** (for audio transcription)
 4. Create a Service Account and download JSON key
 5. Save the key as `google-cloud-key.json` in `transearly-api/`
 
@@ -178,6 +182,7 @@ npm run tunnel
 - **Framework**: NestJS (Node.js)
 - **Queue**: Bull + Redis
 - **OCR**: Google Cloud Vision API
+- **Speech-to-Text**: Google Cloud Speech API
 - **AI Translation**: OpenRouter (Gemini Flash)
 - **WebSocket**: Socket.io
 - **Document Processing**: pdf-lib, mammoth, exceljs, pptxgenjs
@@ -192,6 +197,7 @@ npm run tunnel
 
 ### External Services
 - **Google Cloud Vision API** - Text detection and OCR
+- **Google Cloud Speech API** - Speech-to-Text transcription
 - **OpenRouter** - AI translation (Gemini Flash model)
 - **Redis** - Queue management
 
@@ -235,6 +241,7 @@ npm run tunnel
 ```
 POST   /translator/text              # Translate text
 POST   /translator/image             # Translate image with OCR
+POST   /translator/audio             # Translate audio/voice (Speech-to-Text + Translation)
 POST   /translator/upload            # Upload document for translation
 GET    /translator/status/:jobId     # Check translation job status
 GET    /translator/download/:fileName # Download translated document
@@ -261,6 +268,20 @@ GET    /translator/download/:fileName # Download translated document
 }
 ```
 
+### Response Format (Audio Translation)
+
+```json
+{
+  "success": true,
+  "originalText": "Hello, how are you today?",
+  "translatedText": "Xin chào, hôm nay bạn khỏe không?",
+  "audioDetails": {
+    "duration": 3,
+    "language": "en-US"
+  }
+}
+```
+
 ---
 
 ## 👥 Team
@@ -268,32 +289,40 @@ GET    /translator/download/:fileName # Download translated document
 <table>
   <tr>
     <td align="center">
-      <img src="https://via.placeholder.com/100" width="100px;" alt=""/>
-      <br />
-      <sub><b>Trương Nguyễn Tiến Đạt</b></sub>
+      <a href="https://github.com/Ryuseikaiz">
+        <img src="https://github.com/Ryuseikaiz.png" width="100px;" alt="Tiến Đạt"/>
+        <br />
+        <sub><b>Trương Nguyễn Tiến Đạt</b></sub>
+      </a>
       <br />
       <sub>Full-stack Developer</sub>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100" width="100px;" alt=""/>
-      <br />
-      <sub><b>Nguyễn Minh Thắng</b></sub>
+      <a href="https://github.com/minhthang165">
+        <img src="https://github.com/minhthang165.png" width="100px;" alt="Minh Thắng"/>
+        <br />
+        <sub><b>Nguyễn Minh Thắng</b></sub>
+      </a>
       <br />
       <sub>Backend Developer</sub>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100" width="100px;" alt=""/>
+      <a href="https://github.com/AlexNguyenHere">
+        <img src="https://github.com/AlexNguyenHere.png" width="100px;" alt="Trung Nguyên"/>
+        <br />
+        <sub><b>Nguyễn Bá Trung Nguyên</b></sub>
+      </a>
       <br />
-      <sub><b>Nguyễn Bá Trung Nguyên</b></sub>
-      <br />
-      <sub>Mobile Developer</sub>
+      <sub>Backend Developer</sub>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100" width="100px;" alt=""/>
+      <a href="https://github.com/AnhTuanFPT1303">
+        <img src="https://github.com/AnhTuanFPT1303.png" width="100px;" alt="Anh Tuấn"/>
+        <br />
+        <sub><b>Nguyễn Hữu Anh Tuấn</b></sub>
+      </a>
       <br />
-      <sub><b>Nguyễn Hữu Anh Tuấn</b></sub>
-      <br />
-      <sub>AI/ML Engineer</sub>
+      <sub>Backend Developer</sub>
     </td>
   </tr>
 </table>
@@ -304,7 +333,8 @@ GET    /translator/download/:fileName # Download translated document
 
 ✅ Text Translation
 ✅ Image Translation with OCR
-✅ Voice Recording & Translation
+✅ Voice Recording & Translation (Speech-to-Text + AI Translation)
+✅ Audio File Support (MP3, WAV, FLAC, OGG, WEBM)
 ✅ Document Translation (PDF, DOCX, XLSX, PPTX, CSV)
 ✅ Real-time WebSocket Updates
 ✅ Interactive Bounding Box UI
@@ -349,7 +379,7 @@ For questions or support, please open an issue or contact the team.
 
 <div align="center">
 
-**Made with ❤️ by the Transearly Team**
+**Made for AI4SE contest**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/your-org/transearly)
 
