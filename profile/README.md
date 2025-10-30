@@ -304,7 +304,7 @@ GET    /translator/download/:fileName # Download translated document
         <sub><b>Nguyễn Minh Thắng</b></sub>
       </a>
       <br />
-      <sub>Backend Developer</sub>
+      <sub>Full-stack Developer</sub>
     </td>
     <td align="center">
       <a href="https://github.com/AlexNguyenHere">
